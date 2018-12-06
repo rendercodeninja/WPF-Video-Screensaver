@@ -1,0 +1,21 @@
+﻿<Window x:Class="CineScreenSaver.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CineScreenSaver"
+        mc:Ignorable="d"
+        Title="MainWindow"         
+        Background="Black"
+        KeyDown="OnKeyboardPressed"
+        MouseDown="OnMousePressed"
+        MouseMove="OnMouseMoved"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStyle="None"
+        WindowState="Maximized">
+    <Grid Name="RootGrid">
+        <MediaElement x:Name="uMediaElement" LoadedBehavior="Manual" />
+        <Label x:Name="uMessageLabel" Content="Please select a folder with supported video files " HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="24" Foreground="White" Visibility="Hidden"/>
+    </Grid>
+</Window>

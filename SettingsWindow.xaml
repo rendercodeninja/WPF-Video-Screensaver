@@ -1,0 +1,48 @@
+﻿<Window x:Class="CineScreenSaver.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CineScreenSaver"
+        mc:Ignorable="d"
+        Title="CineScreenSaver Settings" Height="320" Width="640"
+        ResizeMode="NoResize">
+    <Grid>
+        
+        
+        <!--The vertical stack panel-->
+        <StackPanel Orientation="Vertical" Margin="16" >
+            
+            <!--Header with seperator for video location-->
+            <DockPanel Height="25" >
+                <Label DockPanel.Dock="Left" Content="Video Folder" FontWeight="DemiBold"/>
+                <Separator/>
+            </DockPanel>
+
+            <!--The video folder path and button-->
+            <DockPanel  Margin="16,8,16,8">
+                <TextBlock x:Name="uFolderPath" Padding="6 3">Please select a folder containing supported video files.</TextBlock>
+                <Button HorizontalAlignment="Right" Click="OnSelectFolderClicked" Padding="6 3">Select Folder</Button>
+            </DockPanel>
+
+            <!--The details section-->
+            <DockPanel Height="25" >
+                <Label DockPanel.Dock="Left" Content="Details" FontWeight="DemiBold"/>
+                <Separator/>
+            </DockPanel>
+
+            <!--The total file count label-->
+            <Label x:Name="uFileCount" Margin="6,3"></Label>
+            
+            <!--The files list box-->
+            <ListBox x:Name="uFileList" Margin="6,3" MaxHeight="90" SelectionMode="Single" BorderThickness="0">
+                
+               
+            </ListBox>
+
+
+            
+        </StackPanel>
+
+    </Grid>
+</Window>
