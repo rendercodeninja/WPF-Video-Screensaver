@@ -148,8 +148,8 @@ namespace CineScreenSaver
         //Function to get the selected folder data
         public List<string> GetSelectedPathFiles(string path, bool fileNameOnly)
         {
-            //If path is empty, return null
-            if (string.IsNullOrEmpty(path))
+            //If path empty or directory not found, return null
+            if (string.IsNullOrEmpty(path) || !Directory.Exists(path))
                 return null;
 
             //Get the files in the selected directory with supported formats
