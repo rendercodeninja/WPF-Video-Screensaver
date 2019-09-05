@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
@@ -14,11 +14,11 @@ namespace CineScreenSaver
         //Reference to the core app instance
         private App mAppInstance = ((App)Application.Current);
 
+        //Keeps the list of all available videos
         private List<string> mVideoFiles;
 
         //Whether mouse movement to close screen saver is acceptable or not
         private bool mIsMouseMoveAcceptable = false;
-
 
         //Class constcutor
         public MainWindow()
@@ -32,6 +32,9 @@ namespace CineScreenSaver
             mMouseAcceptTimer.Tick += OnMouseAcceptTimerTriggered;
             mMouseAcceptTimer.Start();
 
+            //Register event handler to be triggered on playback end
+            uMediaElement.MediaEnded +=OnMediaPlaybackEnded;
+
             //Get the cached folder path
             string folderPath = mAppInstance.GetCachedFoldePath();
             //Get the supported video files from the path
@@ -44,12 +47,17 @@ namespace CineScreenSaver
                 uMessageLabel.Visibility = Visibility.Visible;
                 return;
             }
+         
+            //Start playing the media
+            StartMediaPlayback();
+        }
 
-            //Get a random video url from the list
-            uMediaElement.Source = new Uri(mVideoFiles [new Random().Next(mVideoFiles.Count)]);
-            //Start playing the video
-            uMediaElement.Play();
-    }
+        //Event will be trigged when media finished playing
+        private void OnMediaPlaybackEnded(object sender, RoutedEventArgs e)
+        {
+            //Start a new radom video 
+            StartMediaPlayback();
+        }
 
         //Event will be triggered when
         private void OnMouseAcceptTimerTriggered(object sender, EventArgs e)
@@ -91,6 +99,13 @@ namespace CineScreenSaver
             Application.Current.Shutdown();
         }
 
-       
+        //Function to start playing the media
+        public void StartMediaPlayback()
+        {
+            //Get a random video url from the list
+            uMediaElement.Source = new Uri(mVideoFiles [new Random().Next(mVideoFiles.Count)]);
+            //Start playing the video
+            uMediaElement.Play();
+        }
     }
 }
